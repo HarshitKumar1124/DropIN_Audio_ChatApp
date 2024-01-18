@@ -1,0 +1,9 @@
+
+#  This rest Client extension is just like POSTMAN , used for creating API Tests
+
+POST http://localhost:5500/api/v1/send-otp HTTP/1.1
+
+Content-Type:  application/json
+{
+    "phone":"7703099389"
+}
