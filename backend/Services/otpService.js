@@ -5,7 +5,7 @@ const sms_sid = process.env.SMS_SID;
 const sms_auth = process.env.SMS_Auth;
 
 // use to send the otp on phone
-const twilio = require('twilio')("ACab014494846d4dae8f8415adac76aa18","ead8ad371841ba8b2e4e47e2a3b7abe7",{
+const twilio = require('twilio')("AC244ea1bcad343781fad52e6726d42116","84443a109cbcb277c6913cc90eec4d45",{
     lazyLoading:true
 })
 
@@ -33,11 +33,20 @@ class otpService {
     async sendOTP(phone,otp){
         console.log('sending otp to ',phone)
         console.log('otp is : ',otp)
+        console.log('from : ',process.env.SMS_FROM)
         return await twilio.messages.create({
             to:phone,
             from:process.env.SMS_FROM,
             body:`Your CoderHouse Project OTP is ${otp}`
         })
+
+    }
+
+    async verifyOTP(hashString,data){
+
+        const hashString_ToVerify = this.HashOTP(data) 
+
+         return hashString==hashString_ToVerify;
 
     }
 }
